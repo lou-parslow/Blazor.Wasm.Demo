@@ -1,4 +1,3 @@
-# Website https://lou-parslow.github.io/localhost/
 NAME = "Blazor.Wasm.Demo"
 VERSION = "0.0.0"
 WEBSITE = "https://lou-parslow.github.io/Blazor.Wasm.Demo/"
