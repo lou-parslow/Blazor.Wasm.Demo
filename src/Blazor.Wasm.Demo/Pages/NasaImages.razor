@@ -1,0 +1,107 @@
+﻿@page "/nasa-images"
+<h3>NasaImages</h3>
+@using System.Text.Json
+
+<FluentHeader>NASA Images</FluentHeader>
+<FluentToolbar>
+	<FluentLabel>Search for images of the moon landing</FluentLabel>
+	<FluentLabel>Rest API request</FluentLabel>
+	<FluentLabel>https://images-api.nasa.gov/search??q=apollo%2011&description=moon%20landing&media_type=image</FluentLabel>
+	<FluentButton OnClick="GetNasaImages">Get NASA Images</FluentButton>
+	<FluentButton OnClick="ClearImages">Clear Images</FluentButton>
+</FluentToolbar>
+
+@if (nasaImages != null)
+{
+	<FluentGrid>
+@foreach (var item in nasaImages)// nasaImages.collection.items)
+		{
+			<FluentGridItem>
+				<div>
+					<h4>@item.data[0].title</h4>
+					<p>@item.data[0].description</p>
+					<img src="@item.links[0].href" alt="@item.data[0].title" />
+				</div>
+			</FluentGridItem>
+		}
+
+	</FluentGrid>
+	<!--
+	<div>
+		@foreach (var item in nasaImages)// nasaImages.collection.items)
+		{
+			<div>
+				<h4>@item.data[0].title</h4>
+				<p>@item.data[0].description</p>
+				<img src="@item.links[0].href" alt="@item.data[0].title" />
+			</div>
+		}
+	</div>-->
+}
+
+@code {
+	private List<NasaImageItem> nasaImages;
+
+	private async Task GetNasaImages()
+	{
+		var httpClient = new HttpClient();
+		var baseUrl = "https://images-api.nasa.gov/search";
+
+		// Define query parameters
+		var parameters = new Dictionary<string, string>
+		{
+			{ "q", "apollo 11" },
+			{ "description", "moon landing" },
+			{ "media_type", "image" }
+		};
+
+		var queryString = string.Join("&", parameters.Select(p => $"{p.Key}={Uri.EscapeDataString(p.Value)}"));
+		var requestUri = $"{baseUrl}?{queryString}";
+
+		var response = await httpClient.GetAsync(requestUri);
+
+		if (response.IsSuccessStatusCode)
+		{
+			var jsonContent = await response.Content.ReadAsStringAsync();
+			var nasaData = JsonSerializer.Deserialize<NasaApiResponse>(jsonContent);
+
+			if (nasaData != null)
+			{
+				nasaImages = nasaData.collection.items;
+			}
+		}
+	}
+
+	private async Task ClearImages()
+	{
+		nasaImages = new List<NasaImageItem>();
+	}
+
+	// Define models to match the JSON response structure
+	private class NasaApiResponse
+	{
+		public NasaImageCollection collection { get; set; }
+	}
+
+	private class NasaImageCollection
+	{
+		public List<NasaImageItem> items { get; set; }
+	}
+
+	private class NasaImageItem
+	{
+		public List<NasaImageData> data { get; set; }
+		public List<NasaImageLink> links { get; set; }
+	}
+
+	private class NasaImageData
+	{
+		public string title { get; set; }
+		public string description { get; set; }
+	}
+
+	private class NasaImageLink
+	{
+		public string href { get; set; }
+	}
+}
