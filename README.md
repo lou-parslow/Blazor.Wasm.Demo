@@ -6,9 +6,9 @@ The source code may be found [here](https://github.com/lou-parslow/Blazor.Wasm.D
 
 
 <details>
-<summary>Publishing the GitHub page</summary>
+<summary>Publishing to [GitHub Pages](https://pages.github.com/)</summary>
 
-Steps to manually deploy a Blazor WASM application to GitHub pages
+Steps to manually deploy a Blazor WASM application to [GitHub Pages](https://pages.github.com/)
 
 **Build Your Blazor WASM Application for Release:**
    - Open your terminal or command prompt.
