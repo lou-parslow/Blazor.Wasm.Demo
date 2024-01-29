@@ -11,6 +11,7 @@ end
 
 task :build do
   try "rufo ."
+  FileUtils.cp("README.md", "src/#{NAME}/wwwroot/")
   run "dotnet publish src/#{NAME}/#{NAME}.csproj -c Release -o artifacts/#{NAME}.#{VERSION}"
   FileUtils.cp_r "artifacts/#{NAME}.#{VERSION}/wwwroot/.", "docs"
   File.open("docs/.nojekyll", "w") { }
