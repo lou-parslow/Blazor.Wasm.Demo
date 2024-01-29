@@ -13,14 +13,14 @@
 
 @if (nasaImages != null)
 {
-	<FluentGrid>
-@foreach (var item in nasaImages)// nasaImages.collection.items)
+	<FluentGrid Spacing="3">
+@foreach (var item in nasaImages)
 		{
 			<FluentGridItem>
 				<div>
 					<h4>@item.data[0].title</h4>
 					<p>@item.data[0].description</p>
-					<img src="@item.links[0].href" alt="@item.data[0].title" />
+					<img src="@item.links[0].href" alt="@item.data[0].title" style="width: 400px;"/>
 				</div>
 			</FluentGridItem>
 		}
