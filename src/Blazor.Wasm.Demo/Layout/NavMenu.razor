@@ -3,10 +3,13 @@
     <label for="navmenu-toggle" class="navmenu-icon"><FluentIcon Value="@(new Icons.Regular.Size20.Navigation())" Color="Color.Fill" /></label>
     <nav class="sitenav" aria-labelledby="main-menu" onclick="document.getElementById('navmenu-toggle').click();">
         <FluentNavMenu Id="main-menu" Width="250" Collapsible="true" Title="Navigation menu" @bind-Expanded="expanded">
-             <FluentNavLink Href="/" Match="NavLinkMatch.All" Icon="@(new Icons.Regular.Size20.Home())" IconColor="Color.Accent">Home</FluentNavLink>
+             <FluentNavLink Href="/home" Match="NavLinkMatch.All" Icon="@(new Icons.Regular.Size20.Home())" IconColor="Color.Accent">Home</FluentNavLink>
+			<div style="display: none;"><a href="/home">NASA Images</a></div>
              <FluentNavLink Href="counter" Icon="@(new Icons.Regular.Size20.NumberSymbolSquare())" IconColor="Color.Accent">Counter</FluentNavLink>
+			<div style="display: none;"><a href="/counter">NASA Images</a></div>
              <FluentNavLink Href="weather" Icon="@(new Icons.Regular.Size20.WeatherPartlyCloudyDay())" IconColor="Color.Accent">Weather</FluentNavLink>
 			 <FluentNavLink Href="nasa-images" Icon="@(new Icons.Regular.Size20.Image())" IconColor="Color.Accent">NASA Images</FluentNavLink>
+			<div style="display: none;"><a href="/nasa-images">NASA Images</a></div>
         </FluentNavMenu>
     </nav>
 </div>
