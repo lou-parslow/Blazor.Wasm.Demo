@@ -10,6 +10,16 @@
              <FluentNavLink Href="weather" Icon="@(new Icons.Regular.Size20.WeatherPartlyCloudyDay())" IconColor="Color.Accent">Weather</FluentNavLink>
 			 <FluentNavLink Href="nasa-images" Icon="@(new Icons.Regular.Size20.Image())" IconColor="Color.Accent">NASA Images</FluentNavLink>
 			<div style="display: none;"><a href="/nasa-images">NASA Images</a></div>
+			<NavLink href="/home">Home</NavLink>
+			<NavLink href="/counter">Counter</NavLink>
+			<NavLink href="/weather">Weather</NavLink>
+			<NavLink href="/nasa-images">Nasa Images</NavLink>
+			<div>
+				<div>
+					<FluentIcon Value="@(new Icons.Regular.Size20.WeatherPartlyCloudyDay())"/>
+					<NavLink href="/weather">Weather</NavLink>
+				</div>
+			</div>
         </FluentNavMenu>
     </nav>
 </div>
